@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/pages/foods/popular_food_detail.dart';
 import 'package:food_delivery/pages/foods/recommened_food_detail.dart';
+import 'package:food_delivery/pages/home/food_page_body.dart';
+import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
 
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
-      home: RecommenedFoodDetail(),
+      home: MainFoodPage(),
     );
   }
 }
