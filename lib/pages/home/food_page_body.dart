@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
+import 'package:food_delivery/models/products_model.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_column.dart';
@@ -50,7 +51,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 controller: pageController,
                 itemCount: popularProducts.popularProductsList.length,
                 itemBuilder: (context, position) {
-                  return _buildPageItem(position);
+                  return _buildPageItem(
+                      position, popularProducts.popularProductsList[position]);
                 }),
           );
         }),
@@ -185,7 +187,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     );
   }
 
-  Widget _buildPageItem(int index) {
+  Widget _buildPageItem(int index, ProductModel popularProduct) {
     Matrix4 matrix = new Matrix4.identity();
     if (index == _currentPageValue.floor()) {
       var currScale = 1 - (_currentPageValue - index) * (1 - _scaleFactor);
@@ -219,11 +221,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             margin: EdgeInsets.only(
                 left: Dimensions.width10, right: Dimensions.width10),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius30),
-                color: index.isEven ? Color(0xFF69C5DF) : Color(0xFF9294CC),
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage("assets/images/chan-ga.png"))),
+              borderRadius: BorderRadius.circular(Dimensions.radius30),
+              color: index.isEven ? Color(0xFF69C5DF) : Color(0xFF9294CC),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(popularProduct.img!),
+              ),
+            ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
