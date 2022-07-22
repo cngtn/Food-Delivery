@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/models/products_model.dart';
+import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_column.dart';
@@ -225,7 +226,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               color: index.isEven ? Color(0xFF69C5DF) : Color(0xFF9294CC),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(popularProduct.img!),
+                image: NetworkImage(
+                    AppConstants.BASE_URL + "/uploads/" + popularProduct.img!),
               ),
             ),
           ),
